@@ -1,0 +1,469 @@
+Great question. Before learning **CSS Grid**, you should understand **why it exists**.
+
+---
+
+# What is CSS Grid?
+
+Imagine you're drawing lines on a piece of paper to create boxes.
+
+```
++---------+---------+---------+
+|         |         |         |
++---------+---------+---------+
+|         |         |         |
++---------+---------+---------+
+|         |         |         |
++---------+---------+---------+
+```
+
+Each box can hold an item.
+
+That's exactly what **CSS Grid** does.
+
+It lets you divide a webpage into **rows** and **columns**, then place elements inside those boxes.
+
+Think of it like:
+
+* Microsoft Excel
+* A chessboard
+* A calendar
+* A table (but for layouts)
+
+---
+
+# Why do we need Grid?
+
+Suppose you want to build this page.
+
+```
+---------------------------------
+Header
+---------------------------------
+Sidebar | Main Content
+Sidebar | Main Content
+---------------------------------
+Footer
+---------------------------------
+```
+
+Without Grid, arranging these sections is much harder.
+
+Grid makes layouts like this simple.
+
+---
+
+# The Two Parts of Grid
+
+Grid always has two things.
+
+### 1. Grid Container
+
+This is the parent element.
+
+```html
+<div class="container">
+    <div>One</div>
+    <div>Two</div>
+    <div>Three</div>
+</div>
+```
+
+The parent becomes the grid.
+
+```css
+.container{
+    display:grid;
+}
+```
+
+The moment you write
+
+```css
+display:grid;
+```
+
+the container becomes a **Grid Container**.
+
+---
+
+### 2. Grid Items
+
+Everything inside the container becomes a Grid Item.
+
+```
+Container
+│
+├── One
+├── Two
+└── Three
+```
+
+---
+
+# Your First Grid
+
+HTML
+
+```html
+<div class="container">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+</div>
+```
+
+CSS
+
+```css
+.container{
+    display:grid;
+    grid-template-columns:100px 100px 100px;
+}
+```
+
+Result
+
+```
++-----+-----+-----+
+|  1  |  2  |  3  |
++-----+-----+-----+
+```
+
+Notice how they sit next to each other.
+
+---
+
+# Understanding Columns
+
+This line
+
+```css
+grid-template-columns:100px 100px 100px;
+```
+
+means
+
+```
+Column 1 = 100px
+Column 2 = 100px
+Column 3 = 100px
+```
+
+Like this
+
+```
+|100px|100px|100px|
+```
+
+---
+
+# Adding Rows
+
+```css
+.container{
+    display:grid;
+    grid-template-columns:100px 100px;
+    grid-template-rows:100px 100px;
+}
+```
+
+If there are four items
+
+```html
+<div class="container">
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <div>4</div>
+</div>
+```
+
+Result
+
+```
++------+------+
+|  1   |  2   |
++------+------+
+|  3   |  4   |
++------+------+
+```
+
+---
+
+# The fr Unit
+
+You'll use this all the time.
+
+Instead of
+
+```css
+100px
+```
+
+you can write
+
+```css
+1fr
+```
+
+`fr` means **fraction of the available space**.
+
+Example
+
+```css
+grid-template-columns:1fr 1fr;
+```
+
+This means
+
+Split the width equally.
+
+```
++--------------+--------------+
+|              |              |
+|      1       |      2       |
+|              |              |
++--------------+--------------+
+```
+
+---
+
+Another example
+
+```css
+grid-template-columns:2fr 1fr;
+```
+
+Result
+
+```
++----------------------+----------+
+|                      |          |
+|         2fr          |   1fr    |
+|                      |          |
++----------------------+----------+
+```
+
+The first column is twice as wide.
+
+---
+
+# Gap
+
+Without gap
+
+```
++----++----++----+
+| 1  || 2  || 3  |
++----++----++----+
+```
+
+With
+
+```css
+gap:20px;
+```
+
+Result
+
+```
++----+    +----+    +----+
+| 1  |    | 2  |    | 3  |
++----+    +----+    +----+
+```
+
+---
+
+# Repeat()
+
+Instead of
+
+```css
+grid-template-columns:100px 100px 100px 100px;
+```
+
+you can write
+
+```css
+grid-template-columns:repeat(4,100px);
+```
+
+Much shorter.
+
+Another example
+
+```css
+grid-template-columns:repeat(3,1fr);
+```
+
+Means
+
+```
+1fr 1fr 1fr
+```
+
+---
+
+# Example Gallery
+
+HTML
+
+```html
+<div class="container">
+    <div>A</div>
+    <div>B</div>
+    <div>C</div>
+    <div>D</div>
+    <div>E</div>
+    <div>F</div>
+</div>
+```
+
+CSS
+
+```css
+.container{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:15px;
+}
+
+.container div{
+    background:skyblue;
+    padding:20px;
+}
+```
+
+Output
+
+```
++-------+-------+-------+
+|   A   |   B   |   C   |
++-------+-------+-------+
+|   D   |   E   |   F   |
++-------+-------+-------+
+```
+
+---
+
+# Making One Item Bigger
+
+```css
+.item1{
+    grid-column:1 / 3;
+}
+```
+
+Meaning
+
+Start at column 1.
+
+End before column 3.
+
+Result
+
+```
++--------------+--------------+
+|      1       |              |
++--------------+--------------+
+|   2   |   3  |
++-------+------+
+```
+
+Item 1 takes two columns.
+
+---
+
+You can also span rows.
+
+```css
+.item1{
+    grid-row:1 / 3;
+}
+```
+
+Result
+
+```
++------+------+
+|      |  2   |
+|  1   +------+
+|      |  3   |
++------+------+
+```
+
+---
+
+# Real-Life Example
+
+Suppose you're making a dashboard.
+
+```
+----------------------------------------
+Logo
+----------------------------------------
+Menu | Charts
+Menu | Tables
+Menu | Reports
+----------------------------------------
+Footer
+----------------------------------------
+```
+
+Grid is perfect because the page naturally has rows and columns.
+
+---
+
+# Grid vs. Flexbox
+
+This is one of the most important concepts to learn.
+
+| CSS Grid                                    | Flexbox                                             |
+| ------------------------------------------- | --------------------------------------------------- |
+| Two-dimensional (rows **and** columns)      | One-dimensional (row **or** column)                 |
+| Best for page layouts                       | Best for aligning items in a single row or column   |
+| Can control both width and height placement | Primarily controls one direction at a time          |
+| Example: whole webpage layout               | Example: navigation bar, button group, card content |
+
+A simple rule to remember:
+
+* **Use Grid** when you're arranging content in both **rows and columns**.
+* **Use Flexbox** when you're arranging items in **one direction** (either across or down).
+
+---
+
+# Properties You'll Use Most
+
+| Property                | What it does                              |
+| ----------------------- | ----------------------------------------- |
+| `display: grid;`        | Turns an element into a grid container    |
+| `grid-template-columns` | Defines the columns                       |
+| `grid-template-rows`    | Defines the rows                          |
+| `gap`                   | Adds space between grid items             |
+| `repeat()`              | Repeats a column or row pattern           |
+| `fr`                    | Divides available space into fractions    |
+| `grid-column`           | Makes an item span or move across columns |
+| `grid-row`              | Makes an item span or move across rows    |
+
+## Beginner Practice
+
+Try this challenge without looking at the solution first.
+
+Create a webpage that displays six colored boxes in a **3 × 2 grid** like this:
+
+```
++-----+-----+-----+
+|  1  |  2  |  3  |
++-----+-----+-----+
+|  4  |  5  |  6  |
++-----+-----+-----+
+```
+
+Requirements:
+
+* Use `display: grid`.
+* Use `repeat(3, 1fr)` for the columns.
+* Add a `gap` of `15px`.
+* Give each box a background color, `20px` of padding, and centered text.
+
+Once you finish, send me your HTML and CSS. I'll review it like a senior mentor, point out any mistakes, and explain how to improve it.
