@@ -1,0 +1,86 @@
+If you want to center everything inside the `<main>` element, the easiest way is to use CSS.
+
+### Option 1: Center all content horizontally
+
+```css
+main {
+  text-align: center;
+}
+```
+
+However, **this will not fully center a `<table>`**, because tables are block elements.
+
+For the table, add:
+
+```css
+table {
+  margin: 0 auto;
+}
+```
+
+For the ordered list (`<ol>`), if you want the list itself centered while keeping the numbers aligned nicely:
+
+```css
+ol {
+  display: inline-block;
+  text-align: left;
+}
+```
+
+### Complete Example
+
+```html
+<main>
+  <h1>My Page</h1>
+
+  <table border="1">
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+    </tr>
+    <tr>
+      <td>John</td>
+      <td>20</td>
+    </tr>
+  </table>
+
+  <ol>
+    <li>HTML</li>
+    <li>CSS</li>
+    <li>JavaScript</li>
+  </ol>
+</main>
+```
+
+```css
+main {
+  text-align: center;
+}
+
+table {
+  margin: 20px auto;
+}
+
+ol {
+  display: inline-block;
+  text-align: left;
+}
+```
+
+### Option 2: Center everything horizontally **and vertically** (using Flexbox)
+
+If you want the whole page centered in the middle of the screen:
+
+```css
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+```
+
+---
+
+**Question:** Can you share your HTML and CSS code? That way I can point out exactly why it isn't centering.
