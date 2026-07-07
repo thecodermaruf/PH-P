@@ -9,6 +9,16 @@
 
     <title>Flexbox</title>
     <style>
+        body {
+            background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+            min-height: 100vh;
+
+            /* Dark theme */
+            /* background: linear-gradient(135deg, #0F172A, #1E293B, #334155);
+            color: white; */
+
+        }
+
         .container {
             max-width: 1280px;
             margin: 0 auto;
@@ -73,20 +83,187 @@
             align-items: center;
             justify-content: center;
             margin-top: 20px;
-            gap: 10px;
+            gap: 20px;
         }
 
         .colors div {
-            width: 350px;
-            height: 500px;
-            border: solid 2px #244D5F;
+            width: 426px;
+            height: 550px;
+            border: solid 2px white;
+            /* for making text or item center you have to do like this */
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .color {
-            text-align: center;
+        .red {
+            font-size: 48px;
+            color: green;
+            background-color: red;
+            border-radius: 5px;
+            transition: all ease .3s;
+        }
+
+        .red:hover {
+            background-color: white;
+            color: red;
+            border: solid 2px red;
+            border-radius: 5px;
+        }
+
+        .green {
+            font-size: 48px;
+            color: red;
+            background-color: green;
+            border-radius: 5px;
+            transition: all ease-out .3s;
+        }
+
+        .green:hover {
+            background-color: white;
+            color: green;
+            border: solid 2px green;
+            border-radius: 5px;
+        }
+
+        .blue {
+            font-size: 48px;
+            color: white;
+            background-color: blue;
+            border-radius: 5px;
+            transition: all ease .3s;
+        }
+
+        .blue:hover {
+            background-color: white;
+            color: blue;
+            border: solid 2px blue;
+            border-radius: 5px;
         }
 
         /* colors end */
+        /* card start */
+        .cards {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            gap: 20px;
+        }
+
+        .card-1,
+        .card-2,
+        .card-3,
+        .card-4 {
+            border: solid 2px black;
+            width: 320px;
+            height: 500px;
+            border-radius: 5px;
+            /* for making text or item center you have to do like this */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 36px;
+            color: transparent;
+            transition: color .3s ease;
+        }
+
+        .card-1:hover,
+        .card-2:hover,
+        .card-3:hover,
+        .card-4:hover {
+            color: navy;
+        }
+
+        .card-1 {
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+        }
+
+        .card-2 {
+            background: linear-gradient(135deg, #667EEA 0%, #6822ae 100%);
+
+        }
+
+        .card-3 {
+            background: linear-gradient(135deg, #F97316, #FACC15);
+        }
+
+        .card-4 {
+            background: linear-gradient(135deg, #10B981, #22C55E);
+        }
+
+        /* card end */
+        /* Photo Gallery start */
+        .photo-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        .photo-gallery div {
+            width: 210px;
+            height: 210px;
+            border: solid 1px white;
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+            /* for making text or item center you have to do like this */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-gallery div img {
+            width: 210px;
+            height: 210px;
+            transition: all .3s ease-in-out;
+        }
+
+        .photo-gallery div img:hover {
+            width: 212px;
+            height: 212px;
+        }
+
+        /* Photo Gallery end */
+        /* Login Form start */
+        form {
+            width: 250px;
+            height: 200px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+            border: solid 2px white;
+            border-radius: 5px;
+            margin-top: 20px;
+            padding: 15px;
+            background: linear-gradient(135deg, #8B5CF6, #EC4899);
+        }
+
+        form .login input {
+            width: 90%;
+            padding: 5px 8px;
+            border-radius: 15px;
+            margin-top: 2px;
+        }
+
+        .login label {
+            margin-left: 5px;
+        }
+
+        .login .password {
+            margin-top: 5px;
+        }
+
+        .login-btn {
+            margin-top: 5px;
+            margin-left: 180px;
+        }
+
+
+        /* Login Form End */
     </style>
 </head>
 
@@ -110,34 +287,59 @@
         </nav>
         <section>
             <div class="colors">
-                <div class="color">Red</div>
-                <div class="color">Green</div>
-                <div class="color">Blue</div>
+                <div class="red">Red</div>
+                <div class="green">Green</div>
+                <div class="blue">Blue</div>
             </div>
         </section>
 
         <section>
-            <div class="card">Card-1</div>
-            <div class="card">Card-2</div>
-            <div class="card">Card-3</div>
-            <div class="card">Card-4</div>
+            <div class="cards container">
+                <div class="card-1">Card-1</div>
+                <div class="card-2">Card-2</div>
+                <div class="card-3">Card-3</div>
+                <div class="card-4">Card-4</div>
+            </div>
         </section>
 
         <section>
             <div class="photo-gallery">
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>
-                <div>4</div>
-                <div>5</div>
-                <div>6</div>
-                <div>7</div>
-                <div>8</div>
+                <div><img src="image/MindSpark BD Logo with Light Bulb and Brain Silhouette.png" alt="image">
+                </div>
+                <div><img src="image/MindSpark BD Logo with Light Bulb and Brain Silhouette.png" alt="image">
+                </div>
+                <div><img src="image/MindSpark BD Logo with Light Bulb and Brain Silhouette.png" alt="image">
+                </div>
+                <div><img src="image/MindSpark BD Logo with Light Bulb and Brain Silhouette.png" alt="image">
+                </div>
+                <div><img src="image/MindSpark BD Logo with Light Bulb and Brain Silhouette.png" alt="image">
+                </div>
+                <div><img src="image/MindSpark BD Logo with Light Bulb and Brain Silhouette.png" alt="image">
+                </div>
+                <div><img src="image/MindSpark BD Logo with Light Bulb and Brain Silhouette.png" alt="image">
+                </div>
+                <div><img src="image/MindSpark BD Logo with Light Bulb and Brain Silhouette.png" alt="image">
+                </div>
             </div>
         </section>
 
         <section>
-            <form class="login"></form>
+            <form>
+                <div class="login">
+                    <h2>login form</h2>
+                    <div class="gmail">
+                        <label for="">Give you Gmail</label>
+                        <input id="gmail" type="text" placeholder="Your gmail">
+                    </div>
+                    <div class="password">
+                        <label for="password">Give Your Password</label>
+                        <input id="password" type="password" placeholder="Password">
+                    </div>
+                    <div>
+                        <button class="login-btn" type="submit">Login</button>
+                    </div>
+                </div>
+            </form>
         </section>
     </main>
 </body>
